@@ -1,0 +1,53 @@
+<div class="wrapper">
+  <div class="sub-title">
+    The master pricing sets the initial prices that are used for new quotes. To edit this quote, see the Base Pricing tab.
+  </div>
+
+  <div class="table">
+    <div class="header">
+      <div class="header-cell first-col">Shelving</div>
+      <div class="header-cell second-col">Unit Cost</div>
+      <div class="header-cell third-col">Unit Sell Price</div>
+    </div>
+
+    <div class="bottom-line"></div>
+
+    <div class="table-content">
+      <div class="rows">
+        <form [formGroup]="shelvingForm" class="form" *ngIf="shelvingList.controls.length">
+          <ng-container formArrayName="shelvingList" *ngFor="let control of shelvingList.controls; let shelvingListIndex = index;">
+            <div class="row" [formGroupName]="shelvingListIndex">
+              <div class="row-cell first-col"><input type="text" class="text-input" formControlName="name" [placeholder]="shelvingListIndex === shelvingList.controls.length - 1 ? 'Add new' : 'Name'"></div>
+              <div class="row-cell second-col"><span class="currency-sign">$</span><input type="number" min="0" class="number-input" formControlName="cost"></div>
+              <div class="row-cell third-col"><span class="currency-sign">$</span><input type="number" min="0" class="number-input" formControlName="sell"> <span [ngClass]="{'delete-button-hidden': shelvingListIndex === shelvingList.controls.length - 1}" class="delete-button" (click)="removeShelving(shelvingListIndex)">&#x00d7;</span></div>
+            </div>
+          </ng-container>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="table">
+    <div class="header">
+      <div class="header-cell first-col">Options & Accessories</div>
+      <div class="header-cell second-col">Unit Cost</div>
+      <div class="header-cell third-col">Unit Sell Price</div>
+    </div>
+
+    <div class="bottom-line"></div>
+
+    <div class="table-content">
+      <div class="rows">
+        <form [formGroup]="optionsForm" class="form" *ngIf="optionsList.controls.length">
+          <ng-container formArrayName="optionsList" *ngFor="let control of optionsList.controls; let optionsListIndex = index;">
+            <div class="row" [formGroupName]="optionsListIndex">
+              <div class="row-cell first-col"><input type="text" class="text-input" formControlName="name" [placeholder]="optionsListIndex === optionsList.controls.length - 1 ? 'Add new' : 'Name'"></div>
+              <div class="row-cell second-col"><span class="currency-sign">$</span><input type="number" min="0" class="number-input" formControlName="cost"></div>
+              <div class="row-cell third-col"><span class="currency-sign">$</span><input type="number" min="0" class="number-input" formControlName="sell"> <span [ngClass]="{'delete-button-hidden': optionsListIndex === optionsList.controls.length - 1}" class="delete-button" (click)="removeOption(optionsListIndex)">&#x00d7;</span></div>
+            </div>
+          </ng-container>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

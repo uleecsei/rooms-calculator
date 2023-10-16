@@ -1,0 +1,25 @@
+<div class="wrapper">
+  <h1 class="title">{{tabs[selectedTabIndex]}}</h1>
+  <mat-tab-group [selectedIndex]="selectedTabIndex"
+                 (selectedIndexChange)="selectedTabIndex = $event"
+                 mat-stretch-tabs="false" mat-align-tabs="center" class="tab-group">
+    <mat-tab label="Project Overview">
+      <app-project-overview></app-project-overview>
+    </mat-tab>
+    <mat-tab label="Project Details">
+      <app-project-details></app-project-details>
+    </mat-tab>
+    <mat-tab label="Base Pricing">
+      <app-base-pricing></app-base-pricing>
+    </mat-tab>
+    <mat-tab label="Master Pricing">
+      <app-master-pricing></app-master-pricing>
+    </mat-tab>
+  </mat-tab-group>
+</div>
+
+<div class="bottom-buttons">
+  <button class="button bottom-button"><img class="bottom-button-icon" src="../../assets/icons/create-room-icon.png">Room Design</button>
+  <button class="button bottom-button" (click)="saveData()"><img class="bottom-button-icon" src="../../assets/icons/download-icon.png">Download PDF</button>
+  <button class="button bottom-button"><img class="bottom-button-icon" src="../../assets/icons/create-room-icon.png">Manage Project</button>
+</div>

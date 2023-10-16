@@ -1,0 +1,50 @@
+@use '@angular/material' as mat;
+
+@mixin mat-tabs-custom-theme() {
+  .mat-mdc-tab-group {
+    margin: 0 70px 0 70px;
+  }
+
+  .mat-mdc-tab-labels {
+    justify-content: flex-start !important;
+  }
+
+  .mat-mdc-tab-header {
+    border: none !important;
+  }
+
+  .mat-mdc-tab {
+    min-width: 0!important;
+    padding: 0 20px !important;
+    margin: 0 3px !important;
+    font-size: 16px !important;
+    opacity: 1 !important;
+    background-color: var(--tab-color);
+    color: var(--font-color);
+    font-weight: 600;
+    height: 40px !important;
+    width: 181px;
+  }
+
+  .mat-mdc-tab:first-child {
+    margin-left: 0 !important;
+  }
+
+  .mat-mdc-tab:last-child {
+    margin-right: 0 !important;
+  }
+
+  .mat-mdc-tab.mdc-tab-indicator--active {
+    background-color: var(--highlight-color);
+    font-weight: 700;
+  }
+
+  .mdc-tab-indicator__content {
+    opacity: 1 !important;
+    color: var(--highlight-color);
+  }
+
+  .mat-mdc-tab.mdc-tab-indicator--active:not(.mat-mdc-tab-disabled) .mdc-tab__content .mdc-tab__text-label{
+    color: var(--selected-tab-font-color);
+  }
+}

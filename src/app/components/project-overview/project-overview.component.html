@@ -1,0 +1,64 @@
+<div class="wrapper">
+  <div class="section">
+    <div class="contacts" [formGroup]="form">
+      <div class="contacts-item">
+        <div class="contacts-name">Facility Name</div>
+        <input type="text" formControlName="facilityName" placeholder="Facility Name" class="contacts-input">
+      </div>
+
+      <div class="contacts-item">
+        <div class="contacts-name">Room Number</div>
+        <input type="text" formControlName="roomNumber" placeholder="Room Number" class="contacts-input">
+      </div>
+
+      <div class="contacts-item">
+        <div class="contacts-name">Contact Name</div>
+        <input type="text" formControlName="contactName" placeholder="Contact Name" class="contacts-input">
+      </div>
+
+      <div class="contacts-item">
+        <div class="contacts-name">Project Number</div>
+        <input type="text" formControlName="projectNumber" placeholder="Project Number" class="contacts-input">
+      </div>
+    </div>
+    <div class="file-wrapper">
+      <div class="file-title">
+        File Attachments
+      </div>
+      <div class="files-list">
+        <div class="file-item" *ngIf="!files.length">
+          <div class="file-name">
+          </div>
+
+          <div class="file-list-buttons">
+            <span class="file-list-button file-list-button-view file-list-button-disabled">View</span>
+            <span class="file-list-button file-list-button-disabled">Delete</span>
+          </div>
+        </div>
+
+        <div class="file-item" *ngFor="let fileItem of files">
+          <div class="file-name">
+            {{fileItem.name}}
+          </div>
+
+          <div class="file-list-buttons">
+            <span class="file-list-button file-list-button-view" (click)="viewFile(fileItem.path)" [ngClass]="{ 'file-list-button-disabled': !files.length }">View</span>
+            <span (click)="deleteFile(fileItem.name)" class="file-list-button">Delete</span>
+          </div>
+        </div>
+      </div>
+      <button class="button" (click)="fileButton.click()">
+        <input id="fileButton" #fileButton (change)="onFileChanged($event)" type="file"/>
+        Upload File
+      </button>
+    </div>
+  </div>
+  <div class="section">
+    <div class="image-wrapper">
+      <img *ngIf="(saveData$ | async) && (saveData$ | async)?.image0" class="image" [src]="(saveData$ | async)?.image0">
+      <div *ngIf="!(saveData$ | async) || !(saveData$ | async)?.image0" class="no-image">
+        No image.
+      </div>
+    </div>
+  </div>
+</div>

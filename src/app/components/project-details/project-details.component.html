@@ -1,0 +1,130 @@
+<div class="wrapper">
+  <div class="table">
+    <div class="header">
+      <div class="header-cell first-col">Shelving</div>
+      <div class="header-cell second-col">Amount</div>
+      <div class="header-cell third-col">Cost</div>
+      <div class="header-cell fourth-col">Sell Price</div>
+    </div>
+
+    <div class="bottom-line"></div>
+
+    <div class="table-content">
+      <div class="rows">
+        <div class="row" *ngFor="let shelvingUnit of projectDetails.shelving">
+          <div class="row-cell first-col">{{shelvingUnit.name}}</div>
+          <div class="row-cell second-col">{{shelvingUnit.quantity}}</div>
+          <div class="row-cell third-col"><span class="currency-sign">$</span>{{shelvingUnit.cost}}</div>
+          <div class="row-cell fourth-col"><span class="currency-sign">$</span>{{shelvingUnit.sell}}</div>
+        </div>
+
+        <div class="bottom-row row" *ngIf="projectDetails.shelving.length">
+          <div class="row-cell first-col"></div>
+          <div class="row-cell second-col">{{shelvingTotal.quantity}}</div>
+          <div class="row-cell third-col"><span class="currency-sign">$</span>{{shelvingTotal.cost}}</div>
+          <div class="row-cell fourth-col"><span class="currency-sign">$</span>{{shelvingTotal.sell}}</div>
+        </div>
+      </div>
+
+      <textarea resize="none" rows="3" cols="41" class="text-area" placeholder="Additional notes..." [(ngModel)]="projectDetails.shelvingNotes" (input)="onNotesChange()"></textarea>
+    </div>
+  </div>
+
+  <div class="table">
+    <div class="header">
+      <div class="header-cell first-col">Options & Accessories</div>
+      <div class="header-cell second-col">Amount</div>
+      <div class="header-cell third-col">Cost</div>
+      <div class="header-cell fourth-col">Sell Price</div>
+    </div>
+
+    <div class="bottom-line"></div>
+
+    <div class="table-content">
+      <div class="rows">
+        <div class="row" *ngFor="let option of projectDetails.options">
+          <div class="row-cell first-col">{{option.name}}</div>
+          <div class="row-cell second-col"><input type="number" class="number-input" min="0" [(ngModel)]="option.quantity" (input)="onOptionAmountChange(option)"></div>
+          <div class="row-cell third-col"><span class="currency-sign">$</span>{{option.cost}}</div>
+          <div class="row-cell fourth-col"><span class="currency-sign">$</span>{{option.sell}}</div>
+        </div>
+
+        <div class="bottom-row row" *ngIf="projectDetails.options.length">
+          <div class="row-cell first-col"></div>
+          <div class="row-cell second-col">{{optionsTotal.quantity}}</div>
+          <div class="row-cell third-col"><span class="currency-sign">$</span>{{optionsTotal.cost}}</div>
+          <div class="row-cell fourth-col"><span class="currency-sign">$</span>{{optionsTotal.sell}}</div>
+        </div>
+      </div>
+
+      <textarea resize="none" rows="3" cols="41" class="text-area" placeholder="Additional notes..." [(ngModel)]="projectDetails.optionsNotes" (input)="onNotesChange()"></textarea>
+    </div>
+  </div>
+
+  <div class="table">
+    <div class="header">
+      <div class="header-cell first-col">Shipping & Installation</div>
+      <div class="header-cell second-col"></div>
+      <div class="header-cell third-col">Cost</div>
+      <div class="header-cell fourth-col">Sell Price</div>
+    </div>
+
+    <div class="bottom-line"></div>
+
+    <div class="table-content">
+      <div class="rows">
+        <div class="row">
+          <div class="row-cell first-col">Freight Inwards</div>
+          <div class="row-cell second-col"></div>
+          <div class="row-cell third-col"><span class="currency-sign">$</span><input type="number" min="0" class="number-input" [(ngModel)]="projectDetails.quotation['Freight Inwards'].cost" (input)="onShippingDataChange()"></div>
+          <div class="row-cell fourth-col"><span class="currency-sign">$</span><input type="number" min="0" class="number-input" [(ngModel)]="projectDetails.quotation['Freight Inwards'].sell" (input)="onShippingDataChange()"></div>
+        </div>
+
+        <div class="row">
+          <div class="row-cell first-col">Installation</div>
+          <div class="row-cell second-col"></div>
+          <div class="row-cell third-col"><span class="currency-sign">$</span><input type="number" min="0" class="number-input" [(ngModel)]="projectDetails.quotation['Installation'].cost" (input)="onShippingDataChange()"></div>
+          <div class="row-cell fourth-col"><span class="currency-sign">$</span><input type="number" min="0" class="number-input" [(ngModel)]="projectDetails.quotation['Installation'].sell" (input)="onShippingDataChange()"></div>
+        </div>
+
+        <div class="row">
+          <div class="row-cell first-col">Delivery</div>
+          <div class="row-cell second-col"></div>
+          <div class="row-cell third-col"><span class="currency-sign">$</span><input type="number" min="0" class="number-input" [(ngModel)]="projectDetails.quotation['Delivery'].cost" (input)="onShippingDataChange()"></div>
+          <div class="row-cell fourth-col"><span class="currency-sign">$</span><input type="number" min="0" class="number-input" [(ngModel)]="projectDetails.quotation['Delivery'].sell" (input)="onShippingDataChange()"></div>
+        </div>
+      </div>
+
+      <textarea resize="none" rows="3" cols="41" class="text-area" placeholder="Additional notes..." [(ngModel)]="projectDetails.quotationNotes" (input)="onNotesChange()"></textarea>
+    </div>
+  </div>
+
+  <div class="table">
+    <div class="header">
+      <div class="header-cell first-col">Total</div>
+      <div class="header-cell second-col"></div>
+      <div class="header-cell third-col">Cost</div>
+      <div class="header-cell fourth-col">Sell Price</div>
+    </div>
+
+    <div class="bottom-line"></div>
+
+    <div class="table-content">
+      <div class="rows">
+        <div class="row">
+          <div class="row-cell first-col">Total</div>
+          <div class="row-cell second-col"></div>
+          <div class="row-cell third-col">{{projectDetails.quotation['Total Investment'].cost}}</div>
+          <div class="row-cell fourth-col">{{projectDetails.quotation['Total Investment'].sell}}</div>
+        </div>
+
+        <div class="row">
+          <div class="row-cell first-col">GP%</div>
+          <div class="row-cell second-col"></div>
+          <div class="row-cell third-col"></div>
+          <div class="row-cell fourth-col">{{projectDetails.quotation['GP'].sell}}%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
